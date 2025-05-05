@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.net.*;
 import java.io.*;
+import java.security.Key;
 
 public class Cliente {
     static PrintWriter in;
@@ -75,10 +76,12 @@ public class Cliente {
             public void keyPressed(KeyEvent e) {
                 int code = e.getKeyCode();
                 if (in != null) {
-                    if (code == KeyEvent.VK_W) in.println('w');
-                    if (code == KeyEvent.VK_A) in.println('a');
-                    if (code == KeyEvent.VK_S) in.println('s');
-                    if (code == KeyEvent.VK_D) in.println('d');
+                    if (code == KeyEvent.VK_W || code == KeyEvent.VK_UP) in.println('w');
+                    if (code == KeyEvent.VK_A || code == KeyEvent.VK_LEFT) in.println('a');
+                    if (code == KeyEvent.VK_S || code == KeyEvent.VK_DOWN) in.println('s');
+                    if (code == KeyEvent.VK_D || code == KeyEvent.VK_RIGHT) in.println('d');
+                    if (code == KeyEvent.VK_F || code == KeyEvent.VK_SPACE) in.println('f'); //Dispara
+
                 }
             }
         });
