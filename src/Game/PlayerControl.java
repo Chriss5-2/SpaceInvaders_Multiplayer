@@ -22,11 +22,20 @@ public class PlayerControl extends Thread{
 
         try {
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out.println("Conectado como " + player.getName());
 
             int min = 0, screen = 30;
 
             while (true) {
+                // Leyendo input del jugador (para actualizar posición en caso teclee algo)
+                if (in.ready()){
+                    String input = in.readLine();
+                    if (input != null){
+                        processInput(input);
+                    }
+                }
+
                 String frame = scenaryInString(scenary, min, screen, player);
                 out.println(frame);
                 out.println("--Fin--"); // Para que el cliente sepa que terminó el frame
@@ -70,5 +79,19 @@ public class PlayerControl extends Thread{
             scnr.append("\n");
         }
         return scnr.toString();
+    }
+
+    // Método para procesar la tecla ingresada por el jugador
+    public void processInput(String input){
+        int x = player.posX();
+        int y = player.posY();
+        switch(input.toUpperCase()){
+            case "W": if (y>0) y--; break;
+            case "S": if (y<scenary.length-1) y++; break;
+            case "A": if (x>0) x--; break;
+            case "D": if (x<scenary[0].length-1) x++; break;
+        }
+
+        player.position(x, y);
     }
 }
