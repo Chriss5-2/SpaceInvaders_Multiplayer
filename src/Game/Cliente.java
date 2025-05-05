@@ -8,6 +8,7 @@ import java.security.Key;
 
 public class Cliente {
     static PrintWriter in;
+
     // Establecer conexión con el servidor en el puerto 4444
     public static void main(String[] args) throws IOException {
         JTextArea textArea = new JTextArea();

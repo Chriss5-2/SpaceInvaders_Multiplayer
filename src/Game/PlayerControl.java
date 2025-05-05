@@ -44,9 +44,17 @@ public class PlayerControl extends Thread{
                 for(Proyectil p: proyectiles){
                     if(p.activo){
                         p.mover();
+                        // Verificando si el proyectil choca con un enemigo
+                        for(Enemigo enemigo: Servidor.getEnemigos()){
+                            if ((p.x == enemigo.x||p.x==enemigo.x-1) && p.y == enemigo.y && enemigo.isActiv()) {
+                                enemigo.destruir();
+                                p.activo = false; // Destruir el proyectil
+                                Servidor.enemigoMuerto();
+                                break;
+                            }
+                        }
                     }
                 }
-
                 proyectiles.removeIf(p -> !p.activo);
 
                 String frame = scenaryInString(scenary, min, screen, player);
@@ -77,7 +85,7 @@ public class PlayerControl extends Thread{
 
                 // Imprimir enemigos en pantalla
                 if(!dibujado){
-                    for(Enemigo enemigo: enemigos){
+                    for(Enemigo enemigo: Servidor.getEnemigos()){
                         if (i == min+enemigo.y && j == enemigo.x && enemigo.isActiv()) {
                             scnr.append("X");
                             dibujado = true;
