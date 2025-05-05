@@ -10,12 +10,14 @@ public class PlayerControl extends Thread{
     private Player player;
     private int[][] scenary;
     private List<Player> players;
+    private List<Enemigo> enemigos;
 
-    public PlayerControl(Socket socket, Player player, int[][] scenary, List<Player> players) {
+    public PlayerControl(Socket socket, Player player, int[][] scenary, List<Player> players, List<Enemigo> enemigos) {
         this.socket = socket;
         this.player = player;
         this.scenary = scenary;
         this.players = players;
+        this.enemigos = enemigos;
     }
 
     @Override
@@ -72,10 +74,21 @@ public class PlayerControl extends Thread{
             for (int j = 0; j < scenary[i].length; j++) {
                 //boolean foundPlayer = false;
                 boolean dibujado = false; // Reemplaza a founPlayer porque este es más general y el foundPlayer será para dibujar compañeros u enemigos
+
+                // Imprimir enemigos en pantalla
+                if(!dibujado){
+                    for(Enemigo enemigo: enemigos){
+                        if (i == min+enemigo.y && j == enemigo.x && enemigo.isActiv()) {
+                            scnr.append("X");
+                            dibujado = true;
+                            break;
+                        }
+                    }
+                }
                 // Imprimir proyectil en pantalla
                 for(Proyectil p : player.getProyectiles()){
                     if (i == min+p.y && j == p.x && p.activo) {
-                        scnr.append("¡¡");
+                        scnr.append("¡");
                         dibujado = true;
                         break;
                     }
