@@ -14,7 +14,7 @@ public class Servidor {
     private static int wave = 1;
     private static int enemigosGenerados = 0;
     private static int enemigosMuertos = 0;
-    private static int totalPorOleada = 20;
+    private static int totalPorOleada = 5;
     private static boolean gameStarted = false;
 
     public static void main(String[] args) throws IOException {
@@ -45,7 +45,7 @@ public class Servidor {
         // Creando oleada de enemigos
         new Thread(() -> {
             while(gameStarted){
-                if (enemigosGenerados < totalPorOleada){
+                if (enemigosMuertos < totalPorOleada){
                     int x = (int) (Math.random()*(columns-6))+6;
                     Enemigo enemy = new Enemigo(x, 0, wave);
                     synchronized (enemies){
@@ -60,7 +60,7 @@ public class Servidor {
                     enemigosGenerados = 0;
                     enemigosMuertos = 0;
                     //totalPorOleada += 10; // Aumentar la cantidad de enemigos por oleada
-                    if(wave==2) totalPorOleada = 20;
+                    if(wave==2) totalPorOleada = 10;
                     else if (wave == 3) totalPorOleada = 20;
                     else {
                         System.out.println("Ganaste el juego");
