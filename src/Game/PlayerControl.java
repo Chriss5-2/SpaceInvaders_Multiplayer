@@ -46,7 +46,7 @@ public class PlayerControl extends Thread{
                         p.mover();
                         // Verificando si el proyectil choca con un enemigo
                         for(Enemigo enemigo: Servidor.getEnemigos()){
-                            if ((p.x == enemigo.x||p.x==enemigo.x-1) && p.y == enemigo.y && enemigo.isActiv()) {
+                            if ((p.x == enemigo.x||p.x==enemigo.x-1||p.x==enemigo.x+1||p.x==enemigo.x+2||p.x==enemigo.x+3||p.x==enemigo.x+4||p.x==enemigo.x+5) && (p.y == enemigo.y||p.y == enemigo.y-1) && enemigo.isActiv()) {
                                 enemigo.destruir();
                                 p.activo = false; // Destruir el proyectil
                                 Servidor.enemigoMuerto();
