@@ -57,6 +57,7 @@ public class PlayerControl extends Thread{
                 }
                 proyectiles.removeIf(p -> !p.activo);
 
+                //String frame = scenaryInString(scenary, min, screen, player);
                 String frame = scenaryInString(scenary, min, screen, player);
                 out.println(frame);
                 out.println("--Fin--"); // Para que el cliente sepa que terminó el frame
@@ -112,6 +113,9 @@ public class PlayerControl extends Thread{
                             break;
                         }
                     }
+                    //
+
+                    //
                     if (!foundPlayer) {
                         if (scenary[i][j] == 1) {
                             scnr.append("#");

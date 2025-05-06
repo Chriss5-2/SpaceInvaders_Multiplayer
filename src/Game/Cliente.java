@@ -65,6 +65,7 @@ public class Cliente {
 
         // Creación del frame para presentación del mapa en el GUI
         JFrame gui = new JFrame("Space Invaders - Cliente");
+        gui.getContentPane().setBackground(new java.awt.Color(255, 255, 255));
         gui.setSize(1100, 600);
         gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
