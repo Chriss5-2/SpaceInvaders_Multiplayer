@@ -46,7 +46,7 @@ public class Servidor {
         new Thread(() -> {
             while(gameStarted){
                 if (enemigosGenerados < totalPorOleada){
-                    int x = (int) (Math.random()*(columns-2))+1;
+                    int x = (int) (Math.random()*(columns-6))+6;
                     Enemigo enemy = new Enemigo(x, 0, wave);
                     synchronized (enemies){
                         enemies.add(enemy);

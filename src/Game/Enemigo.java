@@ -11,9 +11,9 @@ public class Enemigo {
         this.y = y;
         this.activo= true;
 
-        if(wave == 1) velocidad=30;
-        else if (wave == 2) velocidad = 15;
-        else velocidad = 5;
+        if(wave == 1) velocidad=20;
+        else if (wave == 2) velocidad = 8;
+        else velocidad = 2;
     }
 
     public void mover(){
